@@ -27,8 +27,10 @@ jobs:
         stale-branch-label: 'stale branch 🗑️'
         compare-branches: 'info' 
 
-  post_message_on_slack:  
+  post_message_on_slack: 
+    needs: stale_branches 
     runs-on: ubuntu-latest
+    steps:
     - name: Post to a Slack channel
       id: slack
       uses: slackapi/slack-github-action@v1.23.0
