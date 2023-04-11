@@ -26,7 +26,9 @@ jobs:
         tag-committer: true
         stale-branch-label: 'stale branch 🗑️'
         compare-branches: 'info' 
-    
+
+  post_message_on_slack:  
+    runs-on: ubuntu-latest
     - name: Post to a Slack channel
       id: slack
       uses: slackapi/slack-github-action@v1.23.0
@@ -36,7 +38,7 @@ jobs:
         # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
         channel-id: 'C0515E8LK89'
         # For posting a simple plain text message
-        slack-message: "GitHub build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+        slack-message: "*result:* ${{ jobs.stale_branches.outputs }}\n"
       env:
         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}        
         
