@@ -40,7 +40,7 @@ jobs:
         # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
         channel-id: 'C0515E8LK89'
         # For posting a simple plain text message
-        slack-message: "*result:* ${{ jobs.stale_branches.outputs }}\n"
+        slack-message: "*result:* ${{ needs.stale_branches.outputs }}\n"
       env:
         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}        
         
